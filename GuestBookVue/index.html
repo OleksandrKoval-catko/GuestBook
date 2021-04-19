@@ -1,1 +1,66 @@
-Index
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/mainStyle.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="header">
+        <div class="logoBlock">
+          <h1 class="logoText">Guest book</h1>
+        </div>
+        <div class="menuBlock">
+          <ul>
+            <li class="menuItem">Add</li>
+          </ul>
+        </div>
+      </div>
+      <div class="formBlock">
+        <form @submit.prevent="onSubmit">
+          <p>
+            <lable for="NameGuest">Name: </lable>
+            <input id="NameGuest" v-model="nameGuest" />
+          </p>
+          <p>
+            <lable for="Comment">Comment: </lable>
+            <textarea
+              name=""
+              id="Comment"
+              cols="100"
+              rows="10"
+              v-model="comment"
+            ></textarea>
+          </p>
+          <p>
+            <lable for="rating"></lable>
+            <select name="" id="rating" v-model="rating">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </p>
+          <p>
+            <lable>
+              <lable for="Email">Email: </lable>
+              <input id="Email" v-model="email" />
+            </lable>
+          </p>
+
+          <p>
+            <input type="submit" value="Submit" />
+          </p>
+        </form>
+      </div>
+    </div>
+    <!-- development version, includes helpful console warnings -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
