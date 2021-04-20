@@ -38,9 +38,12 @@ new Vue({
                 if (this.name && this.comment ) {
                     axios.post(this.url.postComment, { name: this.name, rating: parseInt(this.rating, 10), comment: this.comment, email: this.email }).then((response) => {
                         console.warn(response);
+                        if (response.status == '200') {this.getUnits();
+                            
+                        }
                     });
                    this.cleanF();
-                    this.getUnits();
+                    
                     return true;
                 }
 
