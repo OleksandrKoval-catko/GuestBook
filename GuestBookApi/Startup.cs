@@ -32,7 +32,16 @@ namespace GuestBookApi
 
             services.AddCors(c => c.AddDefaultPolicy(builder => builder = builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
-            // services.AddSwaggerGen();
+            // services.AddSwaggerGen(op =>
+            // {
+            // op.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+            // {
+            //    Title = "Swagger GuestBook API",
+            //  
+            //   Description = "Showing Swager API",
+            //     Version = "v1"
+            // });
+            //});
             services.AddMvcCore(x => { x.EnableEndpointRouting = false; });
             services.AddDbContext<Context.MainContext>(build => build.UseSqlServer(connectionString));
 
@@ -48,11 +57,11 @@ namespace GuestBookApi
 
             app.UseCors();
             app.UseMvcWithDefaultRoute();
-            //  app.UseSwagger();
-            //  app.UseSwaggerUI(s =>
-            // {
-            //    s.SwaggerEndpoint("/swagger/v1/swagger.json", "GuestBookApi v1");
-            // });
+            //app.UseSwagger();
+            //app.UseSwaggerUI(s =>
+            //{
+            //   s.SwaggerEndpoint("/swagger/v1/swagger.json", "GuestBookApi v1");
+            //});
 
         }
     }

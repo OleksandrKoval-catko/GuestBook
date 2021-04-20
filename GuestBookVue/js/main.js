@@ -34,7 +34,7 @@ new Vue({
             })
         },
         onSubmit: function (e) {
-            
+             this.errors = [];
                 if (this.name && this.comment ) {
                     axios.post(this.url.postComment, { name: this.name, rating: parseInt(this.rating, 10), comment: this.comment, email: this.email }).then((response) => {
                         console.warn(response);
@@ -44,7 +44,7 @@ new Vue({
                     return true;
                 }
 
-                this.errors = [];
+               
 
                 if (!this.name) {
                     this.errors.push('A name is required.');
@@ -60,6 +60,7 @@ new Vue({
         
             }
     },
+  
     created: function () {
         
         this.getUnits()
