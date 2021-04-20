@@ -5,62 +5,88 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/mainStyle.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <title>Document</title>
   </head>
   <body>
     <div id="app">
+     
+
       <div class="header">
         <div class="logoBlock">
           <h1 class="logoText">Guest book</h1>
-        </div>
-        <div class="menuBlock">
-          <ul>
-            <li class="menuItem">Add</li>
-          </ul>
+       
+          
+            <button class="menuItem" v-on:click="openBlock">Add</li>
+          
         </div>
       </div>
-      <div class="formBlock">
-        <form @submit.prevent="onSubmit">
+      <div :class="open ? 'formBlock': 'hidden'">
+        <form @submit.prevent="onSubmit" method="post" novalidate="true">
+         <p v-if="errors.length">
+    <b>Please correct the following errors:</b>
+    <ul>
+      <li v-for="error in errors">{{ error }}</li>
+    </ul>
+  </p>
+         
           <p>
-            <lable for="NameGuest">Name: </lable>
-            <input id="NameGuest" v-model="nameGuest" />
+            <lable for="name">Name: </lable>
+            <input id="name" v-model="name" />
           </p>
           <p>
             <lable for="Comment">Comment: </lable>
             <textarea
               name=""
-              id="Comment"
+              id="comment"
               cols="100"
               rows="10"
               v-model="comment"
             ></textarea>
           </p>
           <p>
-            <lable for="rating"></lable>
-            <select name="" id="rating" v-model="rating">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
+            <lable for="rating">Rating: </lable>
+            <input
+              type="range"
+              min="1"
+              max="10"
+              id="rating"
+              v-model="rating"
+              id="rating"
+            />
           </p>
           <p>
             <lable>
-              <lable for="Email">Email: </lable>
-              <input id="Email" v-model="email" />
+              <lable for="email">Email: </lable>
+              <input id="email" v-model="email" />
             </lable>
           </p>
 
           <p>
-            <input type="submit" value="Submit" />
+            <input class="submit" type="submit" value="Submit" />
           </p>
         </form>
+      </div>
+      <comment></comment>
+      <div class="comments">
+        <div class="commentItem" v-for="note in notes">
+         <div class="rating"> {{ note.rating}}</div>
+          <h3 class="name">{{note.name}}</h3>  
+          <h6>{{note.date}}</h6>
+
+          <hr />
+
+          <p>{{note.comment}}</p>
+         
+          <hr />
+        </div>
       </div>
     </div>
     <!-- development version, includes helpful console warnings -->
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

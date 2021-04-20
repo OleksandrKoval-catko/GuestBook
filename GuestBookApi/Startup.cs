@@ -29,10 +29,12 @@ namespace GuestBookApi
         public void ConfigureServices(IServiceCollection services)
         {
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+            services.AddCors(c => c.AddDefaultPolicy(builder => builder = builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+
             // services.AddSwaggerGen();
             services.AddMvcCore(x => { x.EnableEndpointRouting = false; });
             services.AddDbContext<Context.MainContext>(build => build.UseSqlServer(connectionString));
-
 
         }
 
@@ -43,12 +45,14 @@ namespace GuestBookApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors();
+            app.UseMvcWithDefaultRoute();
             //  app.UseSwagger();
             //  app.UseSwaggerUI(s =>
             // {
             //    s.SwaggerEndpoint("/swagger/v1/swagger.json", "GuestBookApi v1");
             // });
-            app.UseMvcWithDefaultRoute();
 
         }
     }

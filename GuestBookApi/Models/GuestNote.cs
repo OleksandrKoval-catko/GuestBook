@@ -10,7 +10,7 @@ namespace GuestBookApi.Models
         public string Name { get; set; }
         public string Comment { get; set; }
         public int Rating { get; set; }
-        public string Mail { get; set; }
+        public string Email { get; set; }
         public DateTime Date { get; set; }
     }
 }
